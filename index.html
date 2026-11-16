@@ -7,7 +7,7 @@
   <meta name="description" content="Platform kreatif gamelan digital: Katalog MIDIPACK, Sample Audio WAV 24-bit, dan jasa komposisi gamelan Jawa oleh PAN Gamelan.">
   <meta name="theme-color" content="#000529">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; upgrade-insecure-requests;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'; object-src 'none'; upgrade-insecure-requests;">
 
   <!-- Open Graph / WhatsApp / Social Preview -->
   <meta property="og:type" content="website">
@@ -16,9 +16,13 @@
   <meta property="og:image" content="logo.png">
 
   <link rel="icon" type="image/png" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@600&family=Red+Hat+Text:wght@400;500&family=Red+Hat+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <canvas id="furrowContourCanvas" class="furrow-contour-canvas" aria-hidden="true"></canvas>
   <a href="#main-heading" class="skip-link visually-hidden">Langsung ke konten utama</a>
 
   <div class="page-shell">
@@ -38,12 +42,9 @@
         </picture>
       </div>
 
-      <p class="brand-eyebrow" lang="en">Rooted in Tradition, Powered by Tech</p>
-      <h1 id="main-heading" class="brand-title" tabindex="-1">
-        PAN <span class="brand-title-accent">Gamelan</span>
-      </h1>
+      <h1 id="main-heading" class="brand-title" tabindex="-1">PAN Gamelan</h1>
       <p class="brand-bio">
-        Jembatan antara tradisi karawitan Jawa dan produksi musik modern. Menyediakan MIDIPACK, sampel audio WAV, serta komposisi orisinal.
+        Karawitan Jawa dan produksi musik modern: MIDIPACK, sampel WAV, dan&nbsp;komposisi.
       </p>
 
       <!-- Baris Ikon Kanal Sosial Cepat -->
@@ -106,7 +107,7 @@
     </header>
 
     <!-- 2. DAFTAR TAUTAN UTAMA -->
-    <main class="link-section">
+    <main class="link-main">
       <!-- Bagian A: Layanan & Konsultasi -->
       <section class="link-section">
         <h2 class="section-heading">Layanan &amp; Konsultasi</h2>
@@ -158,8 +159,8 @@
                     class="card-thumb-img"
                     src="images/cengkok-gender-midipack.jpg"
                     alt=""
-                    width="54"
-                    height="54"
+                    width="56"
+                    height="56"
                   >
                 </picture>
                 <div class="card-content">
@@ -188,12 +189,12 @@
                     class="card-thumb-img"
                     src="images/bonang-sample-pack.jpg"
                     alt=""
-                    width="54"
-                    height="54"
+                    width="56"
+                    height="56"
                   >
                 </picture>
                 <div class="card-content">
-                  <span class="card-title">Javanese Bonang Slendro Sample Pack</span>
+                  <span class="card-title" lang="en">Javanese Bonang Slendro Sample Pack</span>
                   <span class="card-badge">Rp 87.000</span>
                 </div>
               </div>
@@ -218,8 +219,8 @@
                     class="card-thumb-img"
                     src="images/gambang-midi-pack.jpg"
                     alt=""
-                    width="54"
-                    height="54"
+                    width="56"
+                    height="56"
                   >
                 </picture>
                 <div class="card-content">
@@ -248,8 +249,8 @@
                     class="card-thumb-img"
                     src="images/sample-pack-suling-jawa.jpg"
                     alt=""
-                    width="54"
-                    height="54"
+                    width="56"
+                    height="56"
                   >
                 </picture>
                 <div class="card-content">
@@ -304,8 +305,70 @@
 
     <!-- 3. FOOTER -->
     <footer class="page-footer">
-      <p>&copy; 2026 PAN Gamelan. Hak cipta dilindungi.</p>
+      <p><span lang="en">Rooted in Tradition, Powered by Tech.</span> &copy;&nbsp;2026 PAN&nbsp;Gamelan.</p>
     </footer>
   </div>
+
+  <script>
+    (function () {
+      const canvas = document.getElementById('furrowContourCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      function drawFrame(w, h) {
+        ctx.clearRect(0, 0, w, h);
+
+        // Subtle Deep Navy acoustic contour waves & faint Gold index lines on #000529
+        const waveCount = 7;
+        for (let i = 0; i < waveCount; i++) {
+          const isGoldIndex = i === 2 || i === 5;
+          ctx.beginPath();
+          ctx.lineWidth = isGoldIndex ? 1.25 : 1;
+          ctx.strokeStyle = isGoldIndex
+            ? 'rgba(244, 196, 48, 0.085)'
+            : (i % 2 === 0 ? 'rgba(7, 25, 120, 0.42)' : 'rgba(180, 194, 224, 0.07)');
+          const baseY = h * (0.14 + i * 0.125);
+          const amp = 10 + (i % 3) * 4;
+          for (let x = 0; x <= w; x += 20) {
+            const y = baseY
+              + Math.sin(x * 0.0042 + i * 0.9) * amp
+              + Math.cos(x * 0.0021 + i * 1.3) * (amp * 0.45);
+            if (x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+        }
+
+        // Subtle topographic acoustic survey arcs anchored off-center
+        const cx = w * 0.85;
+        const cy = h * 0.22;
+        const baseRadius = Math.max(w, h) * 0.18;
+        for (let r = 0; r < 4; r++) {
+          const radius = baseRadius + r * 68;
+          ctx.beginPath();
+          ctx.lineWidth = 1;
+          ctx.strokeStyle = r === 2
+            ? 'rgba(244, 196, 48, 0.06)'
+            : 'rgba(7, 25, 120, 0.34)';
+          ctx.arc(cx, cy, Math.max(24, radius), 0, Math.PI * 2);
+          ctx.stroke();
+        }
+      }
+
+      function resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        drawFrame(w, h);
+      }
+
+      window.addEventListener('resize', resize, { passive: true });
+      resize();
+    })();
+  </script>
 </body>
 </html>
