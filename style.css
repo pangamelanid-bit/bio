@@ -1,7 +1,7 @@
 /* Hallmark · checked: 2026-11-15 · genre: modern-minimal · theme: furrow · redesign: restyle · v5.0.0 */
-/* Hallmark · shape: link-hub · paper: #000529 · accent: #F4C430 · display: Red Hat Display · body: Red Hat Text · outlier: Red Hat Mono
+/* Hallmark · shape: link-hub · paper: #000529 · accent: #F4C430 · display: Philosopher · body: Plus Jakarta Sans · outlier: JetBrains Mono
  * nav: social-nav · footer: page-footer · hero: settled · posture: committed · contrast: pass */
-/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5 · adapted link-hub to PAN Gamelan Navy-dominant Fieldbook (Furrow) with 10px Opsi 1 corners, Red Hat Display/Text/Mono, and acoustic contour canvas */
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5 · adapted link-hub to PAN Gamelan Navy-dominant Fieldbook (Furrow) with 10px Opsi 1 corners, Philosopher / Plus Jakarta Sans / JetBrains Mono, and acoustic contour canvas */
 /* Hallmark · dropped "Rooted in Tradition, Powered by Tech" eyebrow · moved brand tagline to footer so hero carries headline, one sentence, and social links */
 /* Hallmark · waive 59 · 40px section rhythm in link-hub · compact link-in-bio groups stay scannable on mobile and desktop without 120px gaps */
 /* Hallmark · waive 78 · 28px section headings inside 540px link-hub · narrow link column keeps category dividers on one clean line */
@@ -63,10 +63,10 @@
     --shadow-part: 0 1px 0 rgba(0, 5, 41, 0.6);
     --thumb-bg: #000529;
 
-    --font-display: 'Red Hat Display', ui-sans-serif, system-ui, sans-serif;
-    --font-body: 'Red Hat Text', ui-sans-serif, system-ui, sans-serif;
-    --font-mono: 'Red Hat Mono', ui-monospace, monospace;
-    --font-outlier: 'Red Hat Mono', ui-monospace, monospace;
+    --font-display: 'Philosopher', Georgia, serif;
+    --font-body: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+    --font-outlier: 'JetBrains Mono', ui-monospace, monospace;
 
     --container-max: 540px;
     --radius-card: 10px;
