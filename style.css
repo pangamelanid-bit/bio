@@ -451,6 +451,7 @@
     font-weight: 400;
     color: var(--color-muted);
     line-height: 1.4;
+    text-wrap: pretty;
   }
 
   .card-badge {
