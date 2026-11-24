@@ -365,17 +365,6 @@
     color: var(--color-accent-ink);
   }
 
-  .link-card-coffee {
-    background-color: var(--color-paper-2);
-    border-color: var(--color-rule-strong);
-    color: var(--color-ink);
-  }
-
-  .link-card-coffee:hover {
-    background-color: var(--color-paper-3);
-    border-color: var(--color-accent);
-  }
-
   .card-left {
     display: flex;
     align-items: center;
@@ -533,7 +522,6 @@
     .avatar-ring,
     .social-icon-link,
     .link-card,
-    .link-card-coffee,
     .card-icon,
     .card-thumb,
     .card-badge {
